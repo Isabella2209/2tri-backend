@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aula1</title>
+    <script>
+        function pesquisaCEP(){
+            var validacep = /^[0-9]{8}$/;
+         const cep = document.getElementById("cep").value
+         resposta.textContent = cep
+
+        if(validacep.test(cep)){
+            var script = document.createElement("script")
+        script.src = "https://viacep.com.br/ws/" + cep + "/json/?callback=preencherCEP"
+        document.body.appendChild(script)
+        } else {
+            alert("CEP preenchido incorretamente")
+        }
+         
+        }
+        function preencherCEP(conteudo){
+        resposta.textContent = JSON.stringify(conteudo)
+        }
+    </script>
+</head>
+<body>
+    <label for="cep">CEP:</label>
+    <input type="text" id="cep" required>
+
+    <p id="resposta"></p>
+    <input type="button" value="ENVIAR" onclick="pesquisaCEP();">
+</body>
+</html>
